@@ -4,9 +4,11 @@ import 'package:dictionary_flutter/dictionary_rdss/service/dictionary_service.da
 class StaticDictionaryService extends DictionaryService {
   @override
   Future<List<Definition>?> findDefinitions(String word) async {
-    return Future<List<Definition>?>.microtask(() => [
-          Definition('Flat-topped butt-resting thing', 'noun'),
-          Definition('Character from PeeWee\'s Playhouse', 'noun')
-        ]);
+    return Future<List<Definition>?>.microtask(
+      () => [
+        Definition('Flat-topped butt-resting thing', 'noun'),
+        Definition('Character from PeeWee\'s Playhouse', 'noun'),
+      ],
+    );
   }
 }
