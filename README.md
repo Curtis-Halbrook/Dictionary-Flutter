@@ -4,4 +4,5 @@ This is the MASTER repo for The Dictionary, written in flutter.  You may notice 
 
 Current Branches:
 Provider_with_MVVM
+BLoC_with_flutter_bloc
 //Add your new branches here!
