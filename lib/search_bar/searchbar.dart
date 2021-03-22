@@ -1,43 +1,29 @@
+import 'package:dictionary_flutter/search_bar/searchbar_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchBar extends StatefulWidget {
-  @override
-  _SearchBarState createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
-  late TextEditingController _controller;
-
+class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextField(
-        controller: _controller,
-        onChanged: (value) => {'[Some means of updating state]'},
-        decoration: InputDecoration(
-          hintText: "Search",
-          prefixIcon: Icon(Icons.search),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: () {
-              _controller.clear();
-              '[Some Means of Updating State]';
-            },
+    return BlocBuilder<SearchBarBloc, SearchBarState>(
+      builder: (context, state) {
+        return Container(
+          child: TextFormField(
+            initialValue: state.text,
+            onChanged: (text) =>
+                context.read<SearchBarBloc>().add(SearchBarTextChanged(text)),
+            decoration: InputDecoration(
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+              suffixIcon: IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () =>
+                    context.read<SearchBarBloc>().add(SearchBarTextChanged('')),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

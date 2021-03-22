@@ -1,15 +1,20 @@
+import 'package:dictionary_flutter/definition_results/defnition_results_bloc.dart';
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DefinitionResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 1, //Some means of adding state
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      itemBuilder: (context, index) => DefinitionResultTile(
-        Definition("Some Means of Adding State", "noun"),
-      ),
+    return BlocBuilder<DefinitionResultsBloc, DefinitionResultsState>(
+      builder: (context, state) {
+        return ListView.builder(
+          itemCount: state.definitions.length,
+          padding: EdgeInsets.symmetric(vertical: 0.0),
+          itemBuilder: (context, index) =>
+              DefinitionResultTile(state.definitions[index]),
+        );
+      },
     );
   }
 }
@@ -22,7 +27,10 @@ class DefinitionResultTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(
+        vertical: 0.0,
+        horizontal: 0.0,
+      ),
       child: ListTile(
         isThreeLine: true,
         title: Text(definition.definition),

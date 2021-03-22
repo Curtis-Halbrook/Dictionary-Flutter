@@ -1,7 +1,8 @@
 # dictionary_flutter
 
-This is the MASTER repo for The Dictionary, written in flutter.  You may notice that it doesn't do anything.  This is because it only has the core widgets and the DictionaryRDSS code.  Anything like performing lookups and mananging state transistions is left as an exercise for the reader, on a Different Branch!
+This is the BLoC_With_flutter_bloc repo for The Dictionary, written in flutter.  It uses [flutter_bloc](https://pub.dev/packages/flutter_bloc) to maintain state and handle transitions between various behaviors.
 
 Current Branches:
 Provider_with_MVVM
+BLoC_With_flutter_bloc
 //Add your new branches here!
