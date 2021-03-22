@@ -7,19 +7,20 @@ import 'package:provider/provider.dart';
 class DefinitionResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    DefinitionResultsViewModel model =
-        Provider.of<DefinitionResultsViewModel>(context);
-
-    return ListView.builder(
-      itemCount: model.definitions.length,
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      itemBuilder: (context, index) =>
-          // ListTile(
-          //   title: Text(model.definitions[index].definition),
-          // ),
-          DefinitionResultTile(
-        model.definitions[index],
-      ),
+    return Consumer<DefinitionResultsViewModel>(
+      builder: (context, model, child) {
+          return ListView.builder(
+            itemCount: model.definitions.length,
+            padding: EdgeInsets.symmetric(vertical: 4.0),
+            itemBuilder: (context, index) =>
+            // ListTile(
+            //   title: Text(model.definitions[index].definition),
+            // ),
+            DefinitionResultTile(
+              model.definitions[index],
+            ),
+          );
+      },
     );
   }
 }
