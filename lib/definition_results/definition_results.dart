@@ -1,6 +1,5 @@
 import 'package:dictionary_flutter/definition_results/definition_results_viewmodel.dart';
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
-// import 'package:dictionary_flutter/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +12,7 @@ class DefinitionResults extends StatelessWidget {
     return ListView.builder(
       itemCount: model.definitions.length,
       padding: EdgeInsets.symmetric(vertical: 4.0),
-      itemBuilder: (context, index) =>
-          // ListTile(
-          //   title: Text(model.definitions[index].definition),
-          // ),
-          DefinitionResultTile(
+      itemBuilder: (context, index) => DefinitionResultTile(
         model.definitions[index],
       ),
     );
