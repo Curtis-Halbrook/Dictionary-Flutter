@@ -1,6 +1,4 @@
-import 'package:dictionary_flutter/search_bar/searchbar_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -12,12 +10,10 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    SearchBarViewModel model = Provider.of<SearchBarViewModel>(context);
-
     return Container(
       child: TextField(
         controller: _controller,
-        onChanged: (value) => model.searchTerm = value,
+        onChanged: (value) => {'[Some means of updating state]'},
         decoration: InputDecoration(
           hintText: "Search",
           prefixIcon: Icon(Icons.search),
@@ -25,7 +21,7 @@ class _SearchBarState extends State<SearchBar> {
             icon: Icon(Icons.clear),
             onPressed: () {
               _controller.clear();
-              model.searchTerm = '';
+              '[Some Means of Updating State]';
             },
           ),
         ),
@@ -35,9 +31,8 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   void initState() {
-    final model = Provider.of<SearchBarViewModel>(context, listen: false);
     super.initState();
-    _controller = TextEditingController(text: model.searchTerm);
+    _controller = TextEditingController();
   }
 
   @override

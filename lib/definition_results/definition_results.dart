@@ -1,19 +1,14 @@
-import 'package:dictionary_flutter/definition_results/definition_results_viewmodel.dart';
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class DefinitionResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    DefinitionResultsViewModel model =
-        Provider.of<DefinitionResultsViewModel>(context);
-
     return ListView.builder(
-      itemCount: model.definitions.length,
+      itemCount: 1, //Some means of adding state
       padding: EdgeInsets.symmetric(vertical: 4.0),
       itemBuilder: (context, index) => DefinitionResultTile(
-        model.definitions[index],
+        Definition("Some Means of Adding State", "noun"),
       ),
     );
   }
