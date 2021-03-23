@@ -1,8 +1,9 @@
 # dictionary_flutter
 
-This is the MASTER repo for The Dictionary, written in flutter.  You may notice that it doesn't do anything.  This is because it only has the core widgets and the DictionaryRDSS code.  Anything like performing lookups and mananging state transistions is left as an exercise for the reader, on a Different Branch!
+This is the mvu_layer branch for The Dictionary, written in flutter.  This uses the [MVU](https://guide.elm-lang.org/architecture/) pattern in a very "Elm" style.  Like many other patterns, it uses unidirectional flow with messages that alter state via a pure function "reducer".
 
 Current Branches:
 Provider_with_MVVM
 BLoC_with_flutter_bloc
+mvu_layer
 //Add your new branches here!
