@@ -1,4 +1,7 @@
+import 'package:dictionary_flutter/redux/definitions/definitions_actions.dart';
+import 'package:dictionary_flutter/redux/definitions/definitions_state.dart';
 import 'package:flutter/material.dart';
+import 'package:dictionary_flutter/redux/store.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -13,7 +16,9 @@ class _SearchBarState extends State<SearchBar> {
     return Container(
       child: TextField(
         controller: _controller,
-        onChanged: (value) => {'[Some means of updating state]'},
+        onChanged: (value) => {
+           Redux.store.dispatch(fetchDefinitionsAction(value))
+        },
         decoration: InputDecoration(
           hintText: "Search",
           prefixIcon: Icon(Icons.search),
@@ -21,7 +26,7 @@ class _SearchBarState extends State<SearchBar> {
             icon: Icon(Icons.clear),
             onPressed: () {
               _controller.clear();
-              '[Some Means of Updating State]';
+              Redux.store.dispatch(SetDefinitionsStateAction(DefinitionsState.initial()));
             },
           ),
         ),

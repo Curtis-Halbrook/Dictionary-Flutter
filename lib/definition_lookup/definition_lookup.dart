@@ -3,8 +3,6 @@ import 'package:dictionary_flutter/search_bar/searchbar.dart';
 import 'package:flutter/material.dart';
 
 class DefinitionLookup extends StatefulWidget {
-  static String routeName = '/';
-
   @override
   _DefinitionLookupState createState() => _DefinitionLookupState();
 }
