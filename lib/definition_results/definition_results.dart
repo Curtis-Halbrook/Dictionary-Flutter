@@ -13,9 +13,6 @@ class DefinitionResults extends StatelessWidget {
             itemCount: model.definitions.length,
             padding: EdgeInsets.symmetric(vertical: 4.0),
             itemBuilder: (context, index) =>
-            // ListTile(
-            //   title: Text(model.definitions[index].definition),
-            // ),
             DefinitionResultTile(
               model.definitions[index],
             ),
