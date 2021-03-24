@@ -6,13 +6,15 @@ import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 AppState appReducer(AppState state, dynamic action) {
+  var newState = state;
   if (action is SetDefinitionsStateAction) {
     final nextDefinitionState =
         definitionsReducer(state.definitionsState, action);
 
-    return state.copyWith(nextDefinitionState);
+    newState = state.copyWith(nextDefinitionState);
   }
-  return state;
+  print("AppState reduced to $newState");
+  return newState;
 }
 
 @immutable
@@ -23,6 +25,11 @@ class AppState {
 
   AppState copyWith(DefinitionsState? definitionsState) {
     return AppState(definitionsState ?? this.definitionsState);
+  }
+
+  @override
+  String toString() {
+    return 'AppState{definitionsState: $definitionsState}';
   }
 }
 

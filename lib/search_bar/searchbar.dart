@@ -14,6 +14,7 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    print("building _SearchBarState");
     return StoreConnector<AppState, SearchBarViewModel>(
         converter: (Store<AppState> store) => SearchBarViewModel.create(store),
         builder: (BuildContext context, SearchBarViewModel viewModel) =>
@@ -27,7 +28,7 @@ class _SearchBarState extends State<SearchBar> {
                   suffixIcon: IconButton(
                     icon: Icon(Icons.clear),
                     onPressed: () {
-                      _controller.clear();
+                      //_controller.clear();
                       viewModel.onClearPressed.call();
                     },
                   ),
