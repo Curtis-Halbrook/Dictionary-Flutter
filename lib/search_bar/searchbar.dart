@@ -37,7 +37,10 @@ class Messenger extends Mvu.Messenger<Model> {
 ///always reflect Model state and allow messages to be sent that change it.
 class SearchBarWidget {
   static Widget builder(
-          BuildContext context, Messenger messenger, Model model) =>
+    BuildContext context,
+    Messenger messenger,
+    Model model,
+  ) =>
       Container(
         child: TextFormField(
           initialValue: model.text,
