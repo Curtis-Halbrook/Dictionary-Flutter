@@ -28,7 +28,7 @@ class _SearchBarState extends State<SearchBar> {
                   suffixIcon: IconButton(
                     icon: Icon(Icons.clear),
                     onPressed: () {
-                      //_controller.clear();
+                      _controller.clear();
                       viewModel.onClearPressed.call();
                     },
                   ),
