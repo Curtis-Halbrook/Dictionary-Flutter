@@ -1,16 +1,25 @@
+import 'package:dictionary_flutter/definition_results/definition_results_viewmodel.dart';
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/material.dart';
+import 'package:dictionary_flutter/redux/store.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 class DefinitionResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 1, //Some means of adding state
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      itemBuilder: (context, index) => DefinitionResultTile(
-        Definition("Some Means of Adding State", "noun"),
-      ),
-    );
+    return StoreConnector<AppState, DefinitionResultViewModel>(
+        converter: (Store<AppState> store) =>
+            DefinitionResultViewModel.create(store),
+        builder: (BuildContext context, DefinitionResultViewModel viewModel) =>
+            ListView.builder(
+              itemCount:
+                  viewModel.definitions.length, //Some means of adding state
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              itemBuilder: (context, index) => DefinitionResultTile(
+                viewModel.definitions[index],
+              ),
+            ));
   }
 }
 

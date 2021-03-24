@@ -12,13 +12,13 @@ void setupServiceLocator() {
   //DictionaryRDSS
   serviceLocator
     ..registerLazySingleton<DictionaryDataStore>(
-          () => MemoryDictionaryDataStore(),
+      () => MemoryDictionaryDataStore(),
     )
     ..registerFactory<DictionaryService>(
-          () => WordsApiDictionaryService(),
+      () => WordsApiDictionaryService(),
     )
     ..registerFactory<DictionaryRepository>(
-          () => BasicDictionaryRepository(
+      () => BasicDictionaryRepository(
         serviceLocator<DictionaryDataStore>(),
         serviceLocator<DictionaryService>(),
       ),

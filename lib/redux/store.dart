@@ -5,9 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
-AppState appReducer(AppState state, dynamic action){
+AppState appReducer(AppState state, dynamic action) {
   if (action is SetDefinitionsStateAction) {
-    final nextDefinitionState = definitionsReducer(state.definitionsState, action);
+    final nextDefinitionState =
+        definitionsReducer(state.definitionsState, action);
 
     return state.copyWith(nextDefinitionState);
   }
@@ -21,9 +22,7 @@ class AppState {
   AppState(this.definitionsState);
 
   AppState copyWith(DefinitionsState? definitionsState) {
-    return AppState(
-        definitionsState ?? this.definitionsState
-    );
+    return AppState(definitionsState ?? this.definitionsState);
   }
 }
 
@@ -47,5 +46,4 @@ class Redux {
       initialState: AppState(definitionsStateInitial),
     );
   }
-
 }

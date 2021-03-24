@@ -1,7 +1,8 @@
-import 'package:dictionary_flutter/redux/definitions/definitions_actions.dart';
-import 'package:dictionary_flutter/redux/definitions/definitions_state.dart';
-import 'package:flutter/material.dart';
 import 'package:dictionary_flutter/redux/store.dart';
+import 'package:dictionary_flutter/search_bar/searchbar_viewmodel.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
 class SearchBar extends StatefulWidget {
   @override
@@ -13,25 +14,26 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextField(
-        controller: _controller,
-        onChanged: (value) => {
-           Redux.store.dispatch(fetchDefinitionsAction(value))
-        },
-        decoration: InputDecoration(
-          hintText: "Search",
-          prefixIcon: Icon(Icons.search),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: () {
-              _controller.clear();
-              Redux.store.dispatch(SetDefinitionsStateAction(DefinitionsState.initial()));
-            },
-          ),
-        ),
-      ),
-    );
+    return StoreConnector<AppState, SearchBarViewModel>(
+        converter: (Store<AppState> store) => SearchBarViewModel.create(store),
+        builder: (BuildContext context, SearchBarViewModel viewModel) =>
+            Container(
+              child: TextField(
+                controller: _controller,
+                onChanged: viewModel.onNewSearchTerm,
+                decoration: InputDecoration(
+                  hintText: "Search",
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.clear),
+                    onPressed: () {
+                      _controller.clear();
+                      viewModel.onClearPressed.call();
+                    },
+                  ),
+                ),
+              ),
+            ));
   }
 
   @override

@@ -7,4 +7,9 @@ class Definition {
   Definition.fromJson(Map<String, dynamic> json)
       : definition = json["definition"],
         partOfSpeech = json["partOfSpeech"];
+
+  @override
+  String toString() {
+    return 'Definition{definition: $definition, partOfSpeech: $partOfSpeech}';
+  }
 }

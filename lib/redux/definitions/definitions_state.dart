@@ -1,7 +1,6 @@
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/foundation.dart';
 
-
 @immutable
 class DefinitionsState {
   final String word;
@@ -9,16 +8,16 @@ class DefinitionsState {
   final bool isLoading;
   final List<Definition> definitions;
 
-  DefinitionsState({
-    this.word = "",
-    this.isError = false,
-    this.isLoading = false,
-    this.definitions = const []});
+  DefinitionsState(
+      {this.word = "",
+      this.isError = false,
+      this.isLoading = false,
+      this.definitions = const []});
 
   factory DefinitionsState.initial() => DefinitionsState();
 
-  DefinitionsState copyWith({
-      String? word,
+  DefinitionsState copyWith(
+      {String? word,
       bool? isError,
       bool? isLoading,
       List<Definition>? definitions}) {
