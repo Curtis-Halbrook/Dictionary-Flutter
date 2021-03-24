@@ -1,26 +1,26 @@
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/material.dart';
-import 'package:mvu_layer/mvu_layer.dart' as Mvu;
+import 'package:mvu_layer/mvu_layer.dart';
 
-class Model {
+class DefinitionResultsModel {
   final List<Definition> definitions;
 
-  Model(this.definitions);
+  DefinitionResultsModel(this.definitions);
 }
 
-class Messenger extends Mvu.Messenger<Model> {
-  Messenger(definitions) : super(Mvu.Update(Model(definitions)));
+class DefinitionResultsMessenger extends Messenger<DefinitionResultsModel> {
+  DefinitionResultsMessenger() : super(Update(DefinitionResultsModel([])));
 
   void changeDefinitions(List<Definition> definitions) => modelDispatcher(
-        (model) => Model(definitions),
+        (model) => DefinitionResultsModel(definitions),
       );
 }
 
 class DefinitionResultsWidget {
   static Widget builder(
     BuildContext context,
-    Messenger messenger,
-    Model model,
+    DefinitionResultsMessenger messenger,
+    DefinitionResultsModel model,
   ) =>
       ListView.builder(
         itemCount: model.definitions.length,
