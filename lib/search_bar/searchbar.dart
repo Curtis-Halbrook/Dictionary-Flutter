@@ -1,43 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 
-class SearchBar extends StatefulWidget {
-  @override
-  _SearchBarState createState() => _SearchBarState();
+part 'searchbar.g.dart';
+
+class SearchBarStore = _SearchBarStore with _$SearchBarStore;
+
+abstract class _SearchBarStore with Store {
+  @observable
+  String text = '';
+
+  @action
+  void changeText(String newText) => text = newText;
+
+  @action
+  void clearText() => text = '';
 }
 
-class _SearchBarState extends State<SearchBar> {
-  late TextEditingController _controller;
+//Here, the store is "injected" into the widget by a parent
+class SearchBar extends StatelessWidget {
+  final SearchBarStore store;
+
+  const SearchBar(this.store);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextField(
-        controller: _controller,
-        onChanged: (value) => {'[Some means of updating state]'},
-        decoration: InputDecoration(
-          hintText: "Search",
-          prefixIcon: Icon(Icons.search),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: () {
-              _controller.clear();
-              '[Some Means of Updating State]';
-            },
-          ),
+    return TextField(
+      onChanged: (newText) => store.changeText(newText),
+      decoration: InputDecoration(
+        hintText: "Search",
+        prefixIcon: Icon(Icons.search),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            store.clearText();
+          },
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
