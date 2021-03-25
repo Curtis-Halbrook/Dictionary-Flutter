@@ -4,7 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+class SearchBarContainer extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, SearchBarViewModel>(
+      converter: (Store<AppState> store) => SearchBarViewModel.create(store),
+      builder: (context, viewModel) {
+          return SearchBar(viewModel);
+      },
+    );
+  }
+}
+
 class SearchBar extends StatefulWidget {
+  final SearchBarViewModel viewModel;
+
+  SearchBar(this.viewModel);
+
   @override
   _SearchBarState createState() => _SearchBarState();
 }
@@ -15,13 +32,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     print("building _SearchBarState");
-    return StoreConnector<AppState, SearchBarViewModel>(
-        converter: (Store<AppState> store) => SearchBarViewModel.create(store),
-        builder: (BuildContext context, SearchBarViewModel viewModel) =>
-            Container(
+    return Container(
               child: TextField(
                 controller: _controller,
-                onChanged: viewModel.onNewSearchTerm,
+                onChanged: widget.viewModel.onNewSearchTerm,
                 decoration: InputDecoration(
                   hintText: "Search",
                   prefixIcon: Icon(Icons.search),
@@ -29,12 +43,12 @@ class _SearchBarState extends State<SearchBar> {
                     icon: Icon(Icons.clear),
                     onPressed: () {
                       _controller.clear();
-                      viewModel.onClearPressed.call();
+                      widget.viewModel.onClearPressed.call();
                     },
                   ),
                 ),
               ),
-            ));
+            );
   }
 
   @override

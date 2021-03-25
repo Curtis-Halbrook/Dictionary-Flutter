@@ -13,9 +13,9 @@ class _DefinitionLookupState extends State<DefinitionLookup> {
     return Container(
       child: Column(
         children: [
-          SearchBar(),
+          SearchBarContainer(),
           Expanded(
-            child: DefinitionResults(),
+            child: DefinitionResultsContainer(),
           ),
         ],
       ),
