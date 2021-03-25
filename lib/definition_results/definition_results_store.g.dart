@@ -12,13 +12,13 @@ mixin _$DefinitionResultsStore on _DefinitionResultsStore, Store {
   final _$definitionsAtom = Atom(name: '_DefinitionResultsStore.definitions');
 
   @override
-  ObservableList<Definition> get definitions {
+  List<Definition> get definitions {
     _$definitionsAtom.reportRead();
     return super.definitions;
   }
 
   @override
-  set definitions(ObservableList<Definition> value) {
+  set definitions(List<Definition> value) {
     _$definitionsAtom.reportWrite(value, super.definitions, () {
       super.definitions = value;
     });

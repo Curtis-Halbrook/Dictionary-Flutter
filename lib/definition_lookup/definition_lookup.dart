@@ -1,26 +1,21 @@
+import 'package:dictionary_flutter/definition_lookup/definition_lookup_store.dart';
 import 'package:dictionary_flutter/definition_results/definition_results.dart';
+import 'package:dictionary_flutter/definition_results/definition_results_store.dart';
 import 'package:dictionary_flutter/search_bar/searchbar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class DefinitionLookup extends StatefulWidget {
-  static String routeName = '/';
-
-  @override
-  _DefinitionLookupState createState() => _DefinitionLookupState();
-}
-
-class _DefinitionLookupState extends State<DefinitionLookup> {
+class DefinitionLookup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SearchBar(),
-          Expanded(
-            child: DefinitionResults(),
-          ),
-        ],
-      ),
+    final store = Provider.of<DefinitionLookupStore>(context);
+    return Column(
+      children: [
+        SearchBar(store.searchBarStore),
+        Expanded(
+          child: DefinitionResults(store.definitionResultsStore),
+        ),
+      ],
     );
   }
 }

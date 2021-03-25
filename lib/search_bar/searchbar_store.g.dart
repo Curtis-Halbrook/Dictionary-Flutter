@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'searchbar.dart';
+part of 'searchbar_store.dart';
 
 // **************************************************************************
 // StoreGenerator

@@ -2,23 +2,36 @@ import 'package:dictionary_flutter/definition_results/definition_results_store.d
 import 'package:dictionary_flutter/dictionary_rdss/model/dictionary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:provider/provider.dart';
 
-//Unlike the SearchBar, instead of injecting the store, we will use Provider
-//to find it in the Widget Tree, placed in by the parent widget
 class DefinitionResults extends StatelessWidget {
+  late final DefinitionResultsStore store;
+
+  DefinitionResults(this.store);
+
   @override
   Widget build(BuildContext context) {
-    DefinitionResultsStore store = Provider.of<DefinitionResultsStore>(context);
-
     return Observer(
-      builder: (_) => ListView.builder(
-        itemCount: store.definitions.length,
-        padding: EdgeInsets.symmetric(vertical: 4.0),
-        itemBuilder: (context, index) => DefinitionResultTile(
-          store.definitions[index],
-        ),
-      ),
+      builder: (_) {
+        if (store.definitions.isEmpty) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'No Results',
+                style: const TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ],
+          );
+        }
+
+        return ListView.builder(
+          itemCount: store.definitions.length,
+          padding: EdgeInsets.symmetric(vertical: 4.0),
+          itemBuilder: (context, index) => DefinitionResultTile(
+            store.definitions[index],
+          ),
+        );
+      },
     );
   }
 }

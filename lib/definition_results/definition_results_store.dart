@@ -8,11 +8,10 @@ class DefinitionResultsStore = _DefinitionResultsStore
 
 abstract class _DefinitionResultsStore with Store {
   @observable
-  ObservableList<Definition> definitions = ObservableList<Definition>();
+  List<Definition> definitions = [];
 
   @action
   void updateDefinitions(List<Definition> newDefinitions) {
-    definitions.clear();
-    definitions.addAll(definitions);
+    definitions = newDefinitions;
   }
 }
