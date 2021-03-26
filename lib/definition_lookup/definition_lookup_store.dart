@@ -14,6 +14,8 @@ abstract class _DefinitionLookupStore with Store {
   late final DictionaryRepository _dictionaryRepository;
   late final SearchBarStore searchBarStore;
   late final DefinitionResultsStore definitionResultsStore;
+
+  //This should be disposed when this class goes out of scope!
   late final ReactionDisposer _searchBarChangedDisposer;
 
   _DefinitionLookupStore(this._dictionaryRepository) {
@@ -22,8 +24,13 @@ abstract class _DefinitionLookupStore with Store {
     _searchBarChangedDisposer = reaction<String>(
       (_) => searchBarStore.text,
       (text) async {
-        final defs = await _dictionaryRepository.findDefinitions(text);
-        definitionResultsStore.updateDefinitions(defs ?? []);
+        try {
+          final defs = await _dictionaryRepository.findDefinitions(text);
+          definitionResultsStore.updateDefinitions(defs ?? []);
+        } catch (Exception) {
+          print('Ok, an error happened and we'
+              'are silently eating it with a print. :(');
+        }
       },
     );
   }
