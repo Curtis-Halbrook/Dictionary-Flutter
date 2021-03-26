@@ -13,7 +13,7 @@ AppState appReducer(AppState state, dynamic action) {
 
     newState = state.copyWith(nextDefinitionState);
   }
-  print("AppState reduced to $newState");
+  print("debug AppState reduced to $newState");
   return newState;
 }
 

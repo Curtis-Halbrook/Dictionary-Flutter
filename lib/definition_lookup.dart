@@ -1,5 +1,5 @@
-import 'package:dictionary_flutter/definition_results/definition_results.dart';
-import 'package:dictionary_flutter/search_bar/searchbar.dart';
+import 'package:dictionary_flutter/definition_results.dart';
+import 'package:dictionary_flutter/searchbar/searchbar.dart';
 import 'package:flutter/material.dart';
 
 class DefinitionLookup extends StatefulWidget {
@@ -13,9 +13,9 @@ class _DefinitionLookupState extends State<DefinitionLookup> {
     return Container(
       child: Column(
         children: [
-          SearchBarContainer(),
+          SearchBar(),
           Expanded(
-            child: DefinitionResultsContainer(),
+            child: DefinitionResults(),
           ),
         ],
       ),

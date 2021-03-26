@@ -1,21 +1,18 @@
-import 'package:dictionary_flutter/redux/definitions/definitions_actions.dart';
-import 'package:dictionary_flutter/redux/definitions/definitions_state.dart';
-import 'package:dictionary_flutter/redux/store.dart';
-import 'package:redux/redux.dart';
+part of searchbar;
 
-class SearchBarViewModel {
+class _SearchBarViewModel {
   final String searchTerm;
   final Function(String) onNewSearchTerm;
   final Function onClearPressed;
 
-  SearchBarViewModel(
+  _SearchBarViewModel(
     this.searchTerm,
     this.onNewSearchTerm,
     this.onClearPressed,
   );
 
-  factory SearchBarViewModel.create(Store<AppState> store) {
-    return SearchBarViewModel(
+  factory _SearchBarViewModel.create(Store<AppState> store) {
+    return _SearchBarViewModel(
       store.state.definitionsState.word,
       (searchTerm) {
         store.dispatch(fetchDefinitionsAction(searchTerm));
