@@ -45,7 +45,7 @@ class SearchBarBloc extends Bloc<SearchBarEvent, SearchBarState> {
         transitionFn,
   ) {
     return events
-        .debounceTime(const Duration(milliseconds: 700))
+        .debounceTime(const Duration(milliseconds: 300))
         .switchMap(transitionFn);
   }
 

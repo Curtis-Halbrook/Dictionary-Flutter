@@ -1,24 +1,27 @@
-import 'package:dictionary_flutter/search_bar/searchbar_bloc.dart';
+import 'searchbar_slab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SearchBarBloc, SearchBarState>(
+    final TextEditingController _controller = TextEditingController();
+    return BlocBuilder<SearchBarSlab, SearchBarState>(
       builder: (context, state) {
         return Container(
-          child: TextFormField(
-            initialValue: state.text,
+          child: TextField(
+            controller: _controller,
             onChanged: (text) =>
-                context.read<SearchBarBloc>().add(SearchBarTextChanged(text)),
+                context.read<SearchBarSlab>().add(SearchBarChangeText(text)),
             decoration: InputDecoration(
               hintText: "Search",
               prefixIcon: Icon(Icons.search),
               suffixIcon: IconButton(
                 icon: Icon(Icons.clear),
-                onPressed: () =>
-                    context.read<SearchBarBloc>().add(SearchBarTextChanged('')),
+                onPressed: () {
+                  _controller.clear();
+                  context.read<SearchBarSlab>().add(SearchBarClearText());
+                },
               ),
             ),
           ),

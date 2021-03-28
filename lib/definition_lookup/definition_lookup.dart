@@ -3,7 +3,7 @@ import 'package:dictionary_flutter/definition_results/definition_results.dart';
 import 'package:dictionary_flutter/definition_results/defnition_results_bloc.dart';
 import 'package:dictionary_flutter/dictionary_rdss/repository/basic_dictionary_repository.dart';
 import 'package:dictionary_flutter/search_bar/searchbar.dart';
-import 'package:dictionary_flutter/search_bar/searchbar_bloc.dart';
+import 'package:dictionary_flutter/search_bar/searchbar_slab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +21,9 @@ class _DefinitionLookupState extends State<DefinitionLookup> {
           DefinitionLookupBlocs(context.read<BasicDictionaryRepository>()),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<SearchBarBloc>(
+          BlocProvider<SearchBarSlab>(
               create: (context) =>
-                  context.read<DefinitionLookupBlocs>().searchBarBloc),
+                  context.read<DefinitionLookupBlocs>().searchBarSlab),
           BlocProvider<DefinitionResultsBloc>(
               create: (context) =>
                   context.read<DefinitionLookupBlocs>().definitionResultsBloc),
